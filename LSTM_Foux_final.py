@@ -58,7 +58,7 @@ torch.manual_seed(42); np.random.seed(42)
 # SECTION 1 — CONFIGURATION
 # ══════════════════════════════════════════════════════════════════════
 
-PROJECT_DIR  = r"D:\foux\Foux\final"
+PROJECT_DIR = os.environ.get("FOUX_DATA_DIR", "./data")
 DATA_CSV     = os.path.join(PROJECT_DIR, "foux_total_water.csv")
 LUMPED_CSV   = os.path.join(PROJECT_DIR, "results", "spring_lumped_full_predictions.csv")
 RESULTS_DIR  = os.path.join(PROJECT_DIR, "results")

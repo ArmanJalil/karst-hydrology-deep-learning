@@ -35,8 +35,8 @@ np.random.seed(42)
 # SECTION 1 — CONFIGURATION
 # ══════════════════════════════════════════════════════════════════════
 
-PROJECT_DIR = r"D:\foux\Foux"
-SHP_PATH    = r"D:\foux\study area and HRUs\hrusfinalf.shp"
+PROJECT_DIR = os.environ.get("FOUX_DATA_DIR", "./data")
+SHP_PATH = os.path.join(PROJECT_DIR, "study_area", "hrusfinalf.shp")
 RAW_CSV     = os.path.join(PROJECT_DIR, "variables_foux.csv")
 RESULTS_DIR = os.path.join(PROJECT_DIR, "final", "results")
 os.makedirs(RESULTS_DIR, exist_ok=True)

@@ -4,6 +4,12 @@ A hybrid modelling framework for **6-hour-ahead discharge prediction** in the Fo
 
 ---
 
+> **Data configuration:** all scripts read their input directory from the
+> `FOUX_DATA_DIR` environment variable (default `./data`). Set it to wherever
+> you keep `foux_total_water.csv`, `variables_foux.csv`, and the HRU shapefile,
+> e.g. `export FOUX_DATA_DIR=/path/to/foux/data`. No absolute paths or
+> credentials are hard-coded.
+
 ## Repository Structure
 
 ```
@@ -120,6 +126,23 @@ The gate behaviour is interpretable:
 All paths are configured at the top of each script under **SECTION 1 — CONFIGURATION**.
 
 ---
+
+
+## Data preparation (Google Earth Engine)
+
+The meteorological forcing (evaporation and potential evapotranspiration per HRU)
+is produced in Earth Engine before the Python models run. Two scripts in
+[`earth_engine/`](earth_engine/) generate the ERA5-Land inputs:
+
+| Script | Purpose |
+|---|---|
+| `era5land_evap_pet_per_hru.js` | Hourly ERA5-Land evaporation & PET per HRU (Sep 2019 – Jul 2024), split by year to avoid GEE timeouts, bilinearly resampled so sub-pixel HRUs still get a value. Exports one CSV per year to Google Drive. |
+| `era5land_evaporation_two_basins.js` | Hourly ERA5-Land evaporation averaged over the two study basins (`bv_reppe`, `BV_hydrogeo_Foux`), exported as a single CSV. |
+
+Run them in the [Earth Engine Code Editor](https://code.earthengine.google.com/),
+then place the exported CSVs in your `FOUX_DATA_DIR`. They reference personal GEE
+assets (e.g. `projects/ee-armanjalil31/assets/foux-HRU`) — swap in your own
+uploaded HRU / basin boundaries to run elsewhere. No credentials are required.
 
 ## Execution Order
 

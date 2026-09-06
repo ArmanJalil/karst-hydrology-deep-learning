@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+# artefacts & data
+data/
+results/
+models/
+*.pth
+*.pkl
+*.csv
+*.json
+*.png
+*.shp
+*.shx
+*.dbf
+*.prj
+.DS_Store

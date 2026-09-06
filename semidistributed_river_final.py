@@ -55,7 +55,7 @@ np.random.seed(42)
 # SECTION 1 — CONFIGURATION
 # ══════════════════════════════════════════════════════════════════════
 
-PROJECT_DIR = r"D:\foux\Foux\final"
+PROJECT_DIR = os.environ.get("FOUX_DATA_DIR", "./data")
 DATA_CSV    = os.path.join(PROJECT_DIR, "foux_total_water.csv")
 RESULTS_DIR = os.path.join(PROJECT_DIR, "results")
 os.makedirs(RESULTS_DIR, exist_ok=True)
